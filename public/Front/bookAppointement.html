@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <title>مركز قياسي مصر </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicon -->
+  <link href="img/logo.png" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.rtl.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.rtl.css" rel="stylesheet">
+  <link href="css/book.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <!-- Spinner End -->
+
+  <body
+    style="background-image: url(img/bg.jpg); background-repeat: no-repeat; background-size: cover;background-position: center center;">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+      <a href="index.html" class="navbar-brand d-flex align-items-center">
+        <h2 class="m-0 text-primary"> <img src="img/logo.png" alt="logo" width="160px" height="60px"></h2>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+          <a href="index.html" class="nav-item nav-link ">الرئيسيه</a>
+          <a href="about.html" class="nav-item nav-link">معلومات عنا</a>
+          <a href="services.html" class="nav-item nav-link">الخدمات</a>
+          <!-- <a href="courses.html" class="nav-item nav-link">الاهداف</a> -->
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> شركاء النجاح</a>
+            <div class="dropdown-menu fade-down m-0">
+              <a href="team.html" class="dropdown-item">الفريق</a>
+              <a href="testimonial.html" class="dropdown-item">التقنيات المستخدمه </a>
+            </div>
+          </div>
+          <a href="contact.html" class="nav-item nav-link">تواصل معانا</a>
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link" data-bs-toggle="dropdown"> اللغه</a>
+            <div class="dropdown-menu fade-down m-0">
+              <button value="ar" class="dropdown-item" onclick="changeLanguage('ar')">Arabic</button>
+              <button value="en" class="dropdown-item" onclick="changeLanguage('en')">English</button>
+            </div>
+          </div>
+
+        </div>
+        <a href="bookAppointement.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block active">حجز موعد</a>
+      </div>
+      <button type="button" class="navbar-toggler me-1" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        style="margin-left: 20px;">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    </nav>
+    <!-- Navbar End -->
+    <main>
+      <div class="boxing">
+        <div class="title">حجز موعد الاختبار </div>
+        <div class="content">
+          <form action="" method="">
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">الاسم </span>
+                <input name="name" type="text" placeholder="Enter Your Name" required>
+              </div>
+              <div class="input-box">
+                <span class="details"> رقم الهاتف</span>
+                <input name="phone" type="text" placeholder="Enter Your phone" required>
+              </div>
+
+              <div class="input-box">
+                <span class="details">المحافظه</span>
+                <select class="select" required="required" name="Choose_city">
+                  <option disabled selected>اختار المحافظه</option>
+                  <option>القاهره</option>
+                  <option>الدقهليه</option>
+                  <option>الشرقيه</option>
+                  <option>المنوفيه</option>
+                  <option>اسيوط</option>
+                  <option>جنوب سيناء</option>
+                  <option>المنيا</option>
+                  <option>بور سعيد</option>
+                  <option>البحيره</option>
+                  <option>الغربيه</option>
+                  <option>الفيوم</option>
+                  <option>الاسكندريه</option>
+                  <option>الاسماعيليه</option>
+                  <option>اسوان</option>
+                  <option>قنا</option>
+                  <option>الاقصر</option>
+                  <option>البحر الاحمر</option>
+                  <option> بني سويف </option>
+                  <option> الجيزه</option>
+                  <option> دمياط</option>
+                  <option> سوهاج</option>
+                  <option> السويس</option>
+                  <option> شمال سيناء</option>
+                  <option> القليوبيه</option>
+                  <option> مطروح </option>
+                  <option> اسوان </option>
+                  <option> الوادي الجديد </option>
+                </select>
+              </div>
+
+              <div class="input-box">
+                <span class="details"> التاريخ</span>
+                <input name="Choose_data" type="date" required>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <button class="btn">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+  </body>
+
+
+
+
+
+
+  <!-- Footer Start -->
+  <footer id="footer" class="section-p1">
+
+
+    <div class="col">
+      <div>
+        <img src="img/logo.png" alt="" width="200px" height="100px">
+      </div>
+
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="team.html">Team</a>
+      <a href="bookAppointement.html">Appointement</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>Follow us</h4>
+
+      <a href="" target="_blank">Facebook</a>
+      <a href="" target="_blank">Twitter</a>
+      <a href="" target="_blank">Linkedin</a>
+      <a href="" target="_blank"></i></a>
+      <a href="" target="_blank"></i></a>
+    </div>
+
+    <div class="col">
+      <!-- <img class="logo" src="img/logoo.png" alt=""> -->
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> Wellington Road, Street 32, San Francisco</p>
+      <p><strong>Phone:</strong>(+20) 01033993202</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00 Mon - Sat</p>
+
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <a href=""><i class="fab fa-facebook-f" target="_blank"></i></a>
+          <a href=""><i class="fab fa-twitter" target="_blank"></i></a>
+          <a href=""><i class="fab fa-instagram" target="_blank"></i></a>
+          <a href="" target="_blank"><i class="fab fa-linkedin" target="_blank"></i></a>
+          <a href="" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </footer>
+  <!-- Footer End -->
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

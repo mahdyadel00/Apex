@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <title>مركز قياسي مصر </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicon -->
+  <link href="img/logo.png" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.rtl.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.rtl.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <!-- Spinner End -->
+
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a href="index.html" class="navbar-brand d-flex align-items-center">
+      <h2 class="m-0 text-primary"> <img src="img/logo.png" alt="logo" width="160px" height="60px"></h2>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto p-4 p-lg-0">
+        <a href="index.html" class="nav-item nav-link ">الرئيسيه</a>
+        <a href="about.html" class="nav-item nav-link active">معلومات عنا</a>
+        <a href="services.html" class="nav-item nav-link">الخدمات</a>
+        <!-- <a href="courses.html" class="nav-item nav-link">الاهداف</a> -->
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> شركاء النجاح</a>
+          <div class="dropdown-menu fade-down m-0">
+            <a href="team.html" class="dropdown-item">الفريق</a>
+            <a href="testimonial.html" class="dropdown-item">التقنيات المستخدمه </a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-item nav-link">تواصل معانا</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link" data-bs-toggle="dropdown"> اللغه</a>
+          <div class="dropdown-menu fade-down m-0">
+            <button value="ar" class="dropdown-item" onclick="changeLanguage('ar')">Arabic</button>
+            <button value="en" class="dropdown-item" onclick="changeLanguage('en')">English</button>
+          </div>
+        </div>
+
+      </div>
+      <a href="bookAppointement.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block"> حجز موعد</a>
+    </div>
+    <button type="button" class="navbar-toggler me-1" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+      style="margin-left: 20px;">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </nav>
+  <!-- Navbar End -->
+
+
+  <!-- Header Start -->
+  <div class="container-fluid bg-primary py-5 mb-5 page-header">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h1 class="display-3 text-white animated slideInDown">من نحن</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+              <li class="breadcrumb-item"><a class="text-white" href="#">معلومات عنا</a></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+
+
+  <!-- About Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+          <div class="position-relative h-100">
+            <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+          <h5 class="text-primary pe-3 " style="font-size: 22px;"> من نحن </h5>
+          <h6 class="mb-4"> مرحبا بكم في مركز قياس مصر </h6>
+          <p class="mb-4">"قياس مصر" هو مركز رائد في تقديم خدمات تقييم الكفاءات المهنية واللغوية في مصر والشرق الأوسط
+          </p>
+          <p class="mb-4">تأسس المركز برؤية لتحقيق التميز في مجال تقييم الكفاءات وتطوير المهارات اللغوية والمهنية. يتميز
+            المركز بفريق عمل من الخبراء والمتخصصين ذوي خبرة واسعة في مجالات التعليم والتطوير المهني، مما يسمح لنا بتقديم
+            خدمات تقييم موثوقة ودقيقة. نحن نؤمن بأهمية تطوير الكفاءات لتحقيق النجاح المهني والشخصي، ونلتزم بتقديم خدمات
+            تساعد الأفراد والمؤسسات على تحقيق أهدافهم.</p>
+          <div class="row gy-2 gx-4 mb-4">
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>التاريخ والتأسيس</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الأهداف</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>القيم</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الخدمات</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الرؤية</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الطموحات</p>
+            </div>
+          </div>
+          <a class="btn btn-primary py-3 px-5 mt-2" href="">قراءه المزيد</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About End -->
+
+
+  <!-- About Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="row g-5">
+
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+          <h5 class="text-primary pe-3 " style="font-size: 25px;"> التاريخ والتأسيس </h5>
+          <h6 class="mb-4"> تأسس "قياس مصر"</h6>
+          <p class="mb-4">تأسس "قياس مصر" كمركز رائد في مجال تقييم الكفاءات المهنية واللغوية، بمهمة لتعزيز المهارات في
+            هذه المجالات.</p>
+          <p class="mb-4">منذ تأسيسه، سعى المركز لتطوير خدماته باستمرار، مع التركيز على الابتكار واستخدام أحدث الأساليب
+            والتقنيات في تقييم الكفاءات. عبر السنوات، تمكن "قياس مصر" من بناء سمعة قوية في مجال تقييم الكفاءات، مدعومة
+            بنتائج موثوقة وتقييمات عالية الجودة.</p>
+          <div class="row gy-2 gx-4 mb-4">
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>التاريخ والتأسيس</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الأهداف</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>القيم</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الخدمات</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الرؤية</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الطموحات</p>
+            </div>
+          </div>
+          <a class="btn btn-primary py-3 px-5 mt-2" href="">قراءه المزيد</a>
+        </div>
+
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+          <div class="position-relative h-100">
+            <img class="img-fluid position-absolute w-100 h-100" src="img/cat-4.jpg" alt="" style="object-fit: cover;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About End -->
+
+
+  <!-- About Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+          <div class="position-relative h-100">
+            <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+          <h5 class="text-primary pe-3 " style="font-size: 22px;"> الرؤية </h5>
+          <h6 class="mb-4"> رؤيتنا في "قياس مصر" </h6>
+          <p class="mb-4">رؤيتنا في "قياس مصر" هي أن نصبح المركز الأول في الشرق الأوسط لتقييم وتطوير الكفاءات المهنية
+            واللغوية.</p>
+          <p class="mb-4"> نسعى لتحقيق التميز والابتكار في جميع خدماتنا، مع التركيز على تلبية وتجاوز توقعات عملائنا.
+            نهدف
+            إلى توفير بيئة تعليمية تحفز على التعلم والتطور المستمر، وتسهم في تحقيق النمو المهني والشخصي للأفراد.</p>
+          <div class="row gy-2 gx-4 mb-4">
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>التاريخ والتأسيس</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الأهداف</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>القيم</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الخدمات</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الرؤية</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الطموحات</p>
+            </div>
+          </div>
+          <a class="btn btn-primary py-3 px-5 mt-2" href="">قراءه المزيد</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About End -->
+
+  <!-- About Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="row g-5">
+
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+          <h5 class="text-primary pe-3 " style="font-size: 25px;"> القيم </h5>
+          <h6 class="mb-4"> قيم قياس مصر </h6>
+          <p class="mb-4">في "قياس مصر"، نقدر المهنية، الابتكار، والشفافية. نحن ملتزمون بتوفير خدمات تقييم عالية الجودة،
+            باستخدام أحدث التقنيات والمنهجيات</p>
+          <p class="mb-4"> نؤمن بأهمية الشفافية في جميع عمليات التقييم ونتائج الاختبارات. نسعى دائمًا لتطوير أساليبنا
+            لضمان تقديم تجربة تقييم شاملة وموضوعية تلبي احتياجات وتوقعات عملائنا. الابتكار هو جزء أساسي من فلسفتنا، حيث
+            نعمل باستمرار على تطوير وتحسين خدماتنا لتكون في طليعة المجالات التي نعمل بها.</p>
+          <div class="row gy-2 gx-4 mb-4">
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>التاريخ والتأسيس</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الأهداف</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>القيم</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الخدمات</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الرؤية</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>الطموحات</p>
+            </div>
+          </div>
+          <a class="btn btn-primary py-3 px-5 mt-2" href="">قراءه المزيد</a>
+        </div>
+
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+          <div class="position-relative h-100">
+            <img class="img-fluid position-absolute w-100 h-100" src="img/cat-4.jpg" alt="" style="object-fit: cover;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About End -->
+
+
+  <!-- Footer Start -->
+  <footer id="footer" class="section-p1">
+
+
+    <div class="col">
+      <div>
+        <img src="img/logo.png" alt="" width="200px" height="100px">
+      </div>
+
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="team.html">Team</a>
+      <a href="bookAppointement.html">Appointement</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>Follow us</h4>
+
+      <a href="" target="_blank">Facebook</a>
+      <a href="" target="_blank">Twitter</a>
+      <a href="" target="_blank">Linkedin</a>
+      <a href="" target="_blank"></i></a>
+      <a href="" target="_blank"></i></a>
+    </div>
+
+    <div class="col">
+      <!-- <img class="logo" src="img/logoo.png" alt=""> -->
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> Wellington Road, Street 32, San Francisco</p>
+      <p><strong>Phone:</strong>(+20) 01033993202</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00 Mon - Sat</p>
+
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <a href=""><i class="fab fa-facebook-f" target="_blank"></i></a>
+          <a href=""><i class="fab fa-twitter" target="_blank"></i></a>
+          <a href=""><i class="fab fa-instagram" target="_blank"></i></a>
+          <a href="" target="_blank"><i class="fab fa-linkedin" target="_blank"></i></a>
+          <a href="" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </footer>
+  <!-- Footer End -->
+
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

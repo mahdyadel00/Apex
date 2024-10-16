@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Resources\Api\v1\Admin;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class CourseResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'color' => $this->color,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'is_summer' => $this->is_summer,
+            'is_approved' => $this->is_approved,
+            'is_enrollement_open' => $this->is_enrollement_open,
+            'lessons_count'       => $this->lessons_count,
+            'edu_years' => EduYearResource::collection($this->whenLoaded('eduYears')),
+            'subjects' => SubjectResource::collection($this->whenLoaded('subjects')),
+            'teachers' => TeacherResource::collection($this->whenLoaded('teachers')),
+            'image' => MediaResource::collection($this->whenLoaded('media')),
+            'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
+            'lessons' => LessonResource::collection($this->whenLoaded('lessons')),
+            'boards' => BoardResource::collection($this->whenLoaded('boards')),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
+    }
+}
