@@ -10,81 +10,55 @@
             </div>
         @include('layouts.admin._message')
             <div class="block-content">
-                <form action="{{ route('admin.services.update', $service->id) }}" method="POST"
-                      enctype="multipart/form-data">
+                <form action="{{ route('admin.services.update', $service->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    {{ method_field('PUT') }}
+                    @method('PUT')
                     <!-- Basic Elements -->
                     <h2 class="content-heading pt-0">{{ __('dashboard.edit') }}</h2>
                     <div class="row push">
                         <div class="col-lg-12">
+
                             <div class="mb-4">
-                                <label class="form-label" for="user_id">{{ __('dashboard.user_name') }}</label>
-                                <input type="text" class="form-control" id="user_id" name="user_id"
-                                       placeholder="{{ __('dashboard.user_name') }}"
-                                       value="{{ $service->user->user_name }}">
-                                @if ($errors->has('user_name'))
-                                    <span class="text-danger ">
-                                        <strong>{{ $errors->first('user_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                              <div class="mb-4">
-                                <label class="form-label" for="company_id">{{ __('dashboard.company_name') }}</label>
-                                <select class="js-select2 form-control" id="company_id" name="company_id"
-                                        style="width: 100%;" data-placeholder="Choose one..">
-                                    <option></option>
-                                    @foreach ($companies as $company)
-                                        <option value="{{ $company->id }}"
-                                            {{ $service->company_id == $company->id ? 'selected' : '' }}>
-                                            {{ $company->data->where('lang_id', $lang_id)->first() != null ?
-                                            $company->data->where('lang_id', $lang_id)->first()->name :
-                                            $company->data->first()->name }}
-                                        </option>
+                                <label class="form-label" for="lang_id">{{ __('dashboard.select_language') }}</label>
+                                <select class="form-control" id="lang_id" name="lang_id">
+                                    @foreach ($languages as $language)
+                                        <option value="{{ $language->id }}"
+                                                @if ($service->data->where('lang_id', $language->id)->first() != null) selected @endif>
+                                            {{ $language->code }}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('company_id'))
-                                    <span class="text-danger ">
-                                        <strong>{{ $errors->first('company_id') }}</strong>
-                                    </span>
-                                @endif
+                                @error('lang_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label" for="title">{{ __('dashboard.title') }}</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    placeholder="{{ __('dashboard.title') }}" value="{{ $service->data->where('lang_id', $lang_id)->first() != null ? $service->data->where('lang_id', $lang_id)->first()->title : $service->data->first()->title }}">
+                                @error('title')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                              <div class="mb-4">
+                                <label class="form-label" for="description">{{ __('dashboard.description') }}</label>
+                                <textarea class="form-control" id="description" name="description"
+                                    placeholder="{{ __('dashboard.description') }}" rows="4">{!! $service->data->where('lang_id', $lang_id)->first() != null ? $service->data->where('lang_id', $lang_id)->first()->description : $service->data->first()->description !!}</textarea>
+                                @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="mb-4">
-                                <label class="form-label" for="useful">{{ __('dashboard.useful') }}</label>
-                                <input type="checkbox" id="useful" name="useful" placeholder="{{ __('dashboard.useful') }}" value="1" {{ $service->useful == 1 ? 'checked' : '' }}>
-                                @if ($errors->has('useful'))
-                                    <span class="text-danger ">
-                                        <strong>{{ $errors->first('useful') }}</strong>
-                                    </span>
-                                @endif
+                                <label class="form-label" for="service_image">{{ __('dashboard.service_image') }}</label>
+                                <input type="file" class="form-control" id="service_image" name="service_image">
+                                @error('service_image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                @foreach ($service->media as $media)
+                                    <img src="{{ asset('storage/' . $media->path) }}" alt="{{ $media->name }}"
+                                        class="img-thumbnail" style="width: 100px; height: 100px;">
+                                @endforeach
                             </div>
-
-
-                            <div class="mb-4">
-                                <label class="form-label" for="information">{{ __('dashboard.information') }}</label>
-                                <textarea class="form-control" id="information" name="information" placeholder="{{ __('dashboard.information') }}" rows="4">
-                                    {!!  $service->information  !!}
-                                </textarea>
-                                @if ($errors->has('information'))
-                                    <span class="text-danger ">
-                                        <strong>{{ $errors->first('information') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" for="information_price">{{ __('dashboard.information_price') }}</label>
-                                <input type="text" class="form-control" id="information_price" name="information_price"
-                                       placeholder="{{ __('dashboard.information_price') }}"
-                                       value="{{ $service->information_price }}">
-                                @if ($errors->has('information_price'))
-                                    <span class="text-danger ">
-                                        <strong>{{ $errors->first('information_price') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
                             <div class="mb-4">
                                 <input class="btn btn-primary" type="submit" value="{{ __('dashboard.edit') }}">
                             </div>

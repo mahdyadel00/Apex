@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Bll\Lang;
+use App\Http\Requests\Front\Contact\StoreContactRequest;
+use App\Models\Contact;
+use App\Models\OurBusiness;
 use App\Models\Post;
+use App\Models\PrivacyPolicy;
 use App\Models\Quiz;
 use App\Models\About;
+use App\Models\Service;
 use App\Models\State;
 use App\Models\Center;
+use App\Models\Team;
 use App\Models\Vision;
 use App\Models\Comment;
 use App\Models\Setting;
@@ -28,49 +34,15 @@ class HomeController extends Controller
     public function index()
     {
         $about          = About::first();
-        $valuesServices = ValuesServices::with('data')->get();
-        $vision         = Vision::first();
-        $testimonial    = Testimonial::first();
-        $informations   = Information::get();
         $setting        = Setting::with('data')->first();
-        $languags       = Language::get();
+        $languages      = Language::get();
         $lang_id        = Lang::getSelectedLangId();
-        return view('layouts.Frontend.index', compact('about', 'languags', 'lang_id','valuesServices','vision','testimonial','informations','setting'));
+        $our_business   = OurBusiness::take(6)->get();
+        $services       = Service::take(4)->get();
+        $teams          = Team::take(4)->get();
+        return view('layouts.Frontend.index', compact('about', 'setting', 'languages', 'lang_id', 'services', 'our_business', 'teams'));
     }
 
-    public function appointement()
-    {
-        $languags   = Language::get();
-        $lang_id    = Lang::getSelectedLangId();
-        $states     = State::get();
-        $centers    = Center::get();
-        $quizzes    = Quiz::get();
-        $setting        = Setting::with('data')->first();
-
-        return view('Frontend.appointement', compact('languags', 'lang_id', 'states', 'quizzes', 'centers', 'setting'));
-    }
-
-    public function getCenters($center_id)
-    {
-        $centers = Center::with('data')->where('state_id', $center_id)->get();
-        return response()->json($centers);
-    }
-
-    public function add_appointement(StoreRequestAppointment $request)
-    {
-         try {
-            DB::beginTransaction();
-            $appointment = Appointment::create($request->all());
-
-            DB::commit();
-            session()->flash('success', __('messages.appointment_successfully'));
-            return redirect()->route('thanks');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::channel('custom')->error('Error in Frontend\HomeController@add_appointement: ' . $e->getMessage());
-            return back()->with('error', 'Something went wrong');
-        }
-    }
 
     public function contact()
     {
@@ -79,6 +51,23 @@ class HomeController extends Controller
         $setting  = Setting::with('data')->first();
         return view('Frontend.contacts', compact('languags', 'lang_id', 'setting'));
     }
+
+    public function contactPost(StoreContactRequest $request)
+    {
+        try{
+            DB::beginTransaction();
+
+            $contact = Contact::create($request->safe()->all());
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Your message has been sent successfully');
+        }catch(\Exception $e){
+            DB::rollBack();
+            Log::channel('error')->error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
+
 
     public function about()
     {
@@ -90,12 +79,6 @@ class HomeController extends Controller
         return view('Frontend.about', compact('languags', 'lang_id' , 'about','setting','testimonial'));
     }
 
-    public function valuesServices()
-    {
-        $valuesServices = ValuesServices::with('data')->get();
-        $lang_id        = Lang::getSelectedLangId();
-        return view('Frontend.values_services', compact('valuesServices', 'lang_id'));
-    }
 
     public function service()
     {
@@ -111,52 +94,13 @@ class HomeController extends Controller
         return view('Frontend.teams', compact('languags', 'lang_id'));
     }
 
-    public function blogs()
+    public function privacy ()
     {
-        $languags = Language::get();
-        $lang_id  = Lang::getSelectedLangId();
-        $setting  = Setting::with('data')->first();
-        $posts    = Post::paginate(6);
-        return view('Frontend.blogs', compact('languags', 'lang_id', 'posts', 'setting'));
-    }
-
-    public function blogDetails($id)
-    {
-        $languags = Language::get();
-        $lang_id  = Lang::getSelectedLangId();
-        $setting  = Setting::with('data')->first();
-        $post     = Post::find($id);
-        return view('Frontend.blog_details', compact('languags', 'lang_id', 'post', 'setting'));
-    }
-
-    public function addComment(Request $request, $post_id)
-    {
-
-        $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|email|max:255',
-            'phone'     => 'required|numeric',
-            'body'      => 'required|string|max:255',
-
-        ]);
-
-
-       Comment::create([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'phone'     => $request->phone,
-            'body'      => $request->body,
-            'post_id'   => $post_id,
-        ]);
-        session()->flash('success', __('messages.comment_successfully'));
-        return back();
-    }
-
-    public function thanks()
-    {
-        $languags = Language::get();
-        $lang_id  = Lang::getSelectedLangId();
-        return view('layouts.Frontend._thanks', compact('languags', 'lang_id'));
+        $languags   = Language::get();
+        $lang_id    = Lang::getSelectedLangId();
+        $setting    = Setting::first();
+        $privacy    = PrivacyPolicy::first();
+        return view('Frontend.privacy', compact('languags', 'lang_id', 'privacy', 'setting'));
     }
 
 

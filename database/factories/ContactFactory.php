@@ -21,7 +21,6 @@ class ContactFactory extends Factory
             "name"          =>  $this->faker->name(),
             "email"         =>  $this->faker->unique()->safeEmail(),
             "phone"         =>  $this->faker->phoneNumber(),
-            "subject"       =>  $this->faker->sentence(),
             "message"       =>  $this->faker->paragraph(),
         ];
     }

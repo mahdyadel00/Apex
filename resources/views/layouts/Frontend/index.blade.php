@@ -1,479 +1,239 @@
 @extends('layouts.Frontend.master')
 
 @section('content')
-    <style>
-          .cl-padding {
-            padding: 100px 0;
-        }
-        .fadeInUp h1 
-        {
-          font-size:25px;
-        }
-        @media (max-width: 800px) {
-            .cl-padding {
-                padding: 0 20px;
-            }
-            .fadeInUp h1 
-        {
-          font-size:20px;
-        }
-        }
-    </style>
-    <!-- Header Start -->
-    @include('layouts.Frontend._header')
-    <!-- Header End -->
-
-    <div class="container-xxl py-2" style="margin-top:40px;">
+    <section class="page-section" id="services">
         <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <h1>
-                        {{ $about->data->where('lang_id', $lang_id)->first() != null
-                            ? $about->data->where('lang_id', $lang_id)->first()->title
-                            : $about->data->first()->title }}
-                    </h1>
-                    <p class="mb-1" style="line-height: 3; color:black;">
-                        {!! $about->data->where('lang_id', $lang_id)->first() != null
-                            ? $about->data->where('lang_id', $lang_id)->first()->description
-                            : $about->data->first()->description !!}
-                    </p>
-
-                    <a class="btn btn-primary mt-2" style="border-radius: 7px;"
-                        href="{{ route('contact') }}">{{ __('dashboard.contact_us') }} </a>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" style="border-radius: 7px;"
-                            src="{{ asset('Front') }}/img/blurred-soft-people-meeting-table-business-people-talking-modern-office-generative-ai.jpg"
-                            alt="" style="object-fit: cover;">
-                    </div>
-                </div>
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">{{ __('front.services') }}</h2>
+                <h3 class="section-subheading text-muted">{{ __('front.services_description') }}</h3>
             </div>
-        </div>
-    </div>
-
-    <!-- Service Start -->
-    <div class="Services" style="color:#fff;margin: 20px 0;">
-        <div class="blog"
-            style="background-image: url({{ asset('Front') }}/img/assortment-pirate-artifacts-bounty.jpg);background-repeat: no-repeat;background-size: cover;">
-            <div class="overlay" style="background-color: rgba(0, 0, 0, 0.8);">
-                <div class="container">
-                    <div class="section">
-                        <div class="row">
-                            <div class="col-md-6 mt-5 mb-5">
-                                <div class="con3">
-                                    <h4 class="text-white"> {{ __('dashboard.history_and_establishment') }}</h4>
-                                    <p style="line-height: 3;font-size:15px">
-                                        {!! $about->data->where('lang_id', $lang_id)->first() != null
-                                            ? $about->data->where('lang_id', $lang_id)->first()->history
-                                            : $about->data->first()->history !!}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-5 mb-5">
-                                <div class="con4">
-                                    <h4 class="text-white">{{ __('dashboard.objectives') }}</h4>
-                                    <p style="line-height: 3;font-size:15px">
-                                        {!! $about->data->where('lang_id', $lang_id)->first() != null
-                                            ? $about->data->where('lang_id', $lang_id)->first()->objectives
-                                            : $about->data->first()->objectives !!}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="row text-center">
+                @foreach($services as $service)
+                    <div class="col-md-3">
+                        <span class="fa-stack fa-4x">
+                            @foreach ($service->media as $media)
+                                <img src="{{ asset('storage/' . $media->path) }}" alt="{{ $media->name }}"
+                                     class="img-thumbnail" style="width: 100px; height: 100px;">
+                            @endforeach
+                        </span>
+                        <h4 class="my-3">
+                            {{ $service->data->where('lang_id', $lang_id)->first() != null?
+                                $service->data->where('lang_id', $lang_id)->first()->title :
+                                $service->data->first()->title }}
+                        </h4>
+                        <p class="text-muted">
+                                {{ $service->data->where('lang_id', $lang_id)->first() != null?
+                                $service->data->where('lang_id', $lang_id)->first()->description :
+                                $service->data->first()->description }}
+                        </p>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- القيم والخدمات -->
-        <div style="background-color: #0c3f68; color:#000">
-            <!-- <div class="container">
-                <div class="row g-4">
-
-                    @foreach ($valuesServices as $valuesService)
-                        @php
-                            $localizedData = $valuesService->data->where('lang_id', $lang_id)->first();
-                        @endphp
-
-                        @if ($localizedData != null && $localizedData->lang_id == $lang_id)
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="team-item bg-light mt-3 mb-3" style="border-radius: 15px;">
-                                    <div class="overflow-hidden">
-                                        @foreach ($valuesService->media as $media)
-                                            <img class="img-fluid" src="{{ asset('storage/' . $media->path) }}"
-                                                style="height: 200px; width: 100%; border-radius: 15px 15px 0 0;"
-                                                alt="{{ $localizedData->title }}">
-                                        @endforeach
-                                    </div>
-
-                                    <div class="text-center p-2"
-                                        style="background-color: #fff; border-radius: 0 0 15px 15px; height: 315px;">
-                                        <h5 class="mt-2 mb-3">
-                                            {{ $localizedData->title }}
-                                        </h5>
-                                        <p class="m-4" style="line-height: 1.5;">
-                                            {!! $localizedData->description !!}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-
-                </div>
-            </div> -->
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" >
-                        <div class="team-item bg-light mt-3 mb-3" style="border-radius: 15px;">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="{{ asset('Front') }}/img/القيم.jpg" style="height: 200px ;width: 100%;border-radius: 15px 15px 0 0;">
-                            </div>
-                            <div class="text-center p-2" style="background-color: #fff;border-radius: 0 0 15px 15px;height:315px ">
-                                <h5 class="mt-2 mb-3">القيم </h5>
-                                <p class="m-4" style="line-height:1.5;">في "قياس مصر"، نقدر المهنية، الابتكار، والشفافية. نحن ملتزمون بتوفير خدمات تقييم عالية الجودة، باستخدام أحدث التقنيات والمنهجيات. نؤمن بأهمية الشفافية في جميع عمليات التقييم ونتائج الاختبارات. نسعى دائمًا لتطوير أساليبنا لضمان تقديم تجربة تقييم شاملة وموضوعية تلبي احتياجات وتوقعات عملائنا. الابتكار هو جزء أساسي من فلسفتنا.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" >
-                        <div class="team-item bg-light mt-3 mb-3" style="border-radius: 15px;">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="{{ asset('Front') }}/img/خدماتنا.jpg" style="height: 200px ;width: 100%;border-radius: 15px 15px 0 0;">
-                            </div>
-                            <div class="text-center p-2" style="background-color: #fff;border-radius: 0 0 15px 15px; height:315px">
-                                <h5 class="mt-2 mb-3">خدماتنا </h5>
-                                <p class="m-3" style="line-height:1.4;">يقدم "قياس مصر" مجموعة واسعة من الخدمات، بما في ذلك اختبارات متخصصة مثل STEP للغة الإنجليزية وKPI لقياس الأداء. نقدم أيضًا استشارات مهنية لتطوير الكفاءات والمهارات الفردية والمؤسسية. بالإضافة إلى ذلك، ننظم ورش عمل ودورات تدريبية في مختلف المجالات لتعزيز القدرات المهنية واللغوية، مع التركيز على تقديم تجربة تعليمية عالية الجودة ومتوافقة مع الاحتياجات المحددة للأفراد والمؤسسات.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" >
-                        <div class="team-item bg-light mt-3 mb-3" style="border-radius: 15px;">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="{{ asset('Front') }}/img/رؤيتنا.png" style="height: 200px ;width: 100%;border-radius: 15px 15px 0 0;">
-                            </div>
-                            <div class="text-center p-2" style="background-color: #fff;border-radius: 0 0 15px 15px; height:315px ">
-                                <h5 class="mt-2 mb-3">رؤيتنا </h5>
-                                <p class="m-4" style="line-height:1.5;">رؤيتنا في "قياس مصر" هي أن نصبح المركز الأول في الشرق الأوسط لتقييم وتطوير الكفاءات المهنية واللغوية. نسعى لتحقيق التميز والابتكار في جميع خدماتنا، مع التركيز على تلبية وتجاوز توقعات عملائنا. نهدف إلى توفير بيئة تعليمية تحفز على التعلم والتطور المستمر، وتسهم في تحقيق النمو المهني والشخصي للأفراد.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" >
-                        <div class="team-item bg-light mt-3 mb-3" style="border-radius: 15px;">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="{{ asset('Front') }}/img/طموحاتنا.jpg" style="height: 200px ;width: 100%;border-radius: 15px 15px 0 0;">
-                            </div>
-                            <div class="text-center p-2" style="background-color: #fff;border-radius: 0 0 15px 15px; height:315px">
-                                <h5 class="mt-2 mb-3">طموحاتنا </h5>
-                                <p class="m-4" style="line-height:1.5;">طموحاتنا في "قياس مصر" تشمل توسيع نطاق خدماتنا لتشمل المزيد من الاختبارات المتخصصة والمعترف بها دولياً. نسعى لإقامة شراكات مع مؤسسات تعليمية ومهنية عالمية لتعزيز جودة خدماتنا وتوسيع نطاق تأثيرنا. كما نطمح إلى الإسهام بفاعلية في تطوير الموارد البشرية وتعزيز الكفاءات المهنية في مصر والمنطقة.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" >
-                        <div class="team-item bg-light mt-3 mb-3" style="border-radius: 15px;">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="{{ asset('Front') }}/img/فريق-العمل.jpg" style="height: 200px ;width: 100%;border-radius: 15px 15px 0 0;">
-                            </div>
-                            <div class="text-center p-2" style="background-color: #fff;border-radius: 0 0 15px 15px; height:315px">
-                                <h5 class="mt-2 mb-3">فريق العمل </h5>
-                                <p class="m-1" style="line-height:1.4;">   يضم مجموعة من الخبراء والمتخصصين في مجالات التعليم وتطوير الأداء المهني. يمتلك فريقنا خبرة واسعة ومؤهلات عالية، وهو مكرس لتقديم أفضل الخدمات والدعم لعملائنا. نؤمن بأن موظفينا هم الأساس في تحقيق نجاحنا، ولذلك نركز على تدريبهم وتطويرهم باستمرار لضمان تقديم خدمات عالية الجودة. نحرص على أن يكون فريقنا مجهزًا بأحدث المعرفة والمهارات في مجالات تخصصهم، مما يضمن تقديم تجربة تعليمية وتقييمية استثنائية لعملائنا.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" >
-                        <div class="team-item bg-light mt-3 mb-3" style="border-radius: 15px;">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="{{ asset('Front') }}/img/شركاء-النجاح.jpg" style="height: 200px ;width: 100%;border-radius: 15px 15px 0 0;">
-                            </div>
-                            <div class="text-center p-2" style="background-color: #fff;border-radius: 0 0 15px 15px;height:315px ">
-                                <h5 class="mt-2 mb-3">شركاء النجاح </h5>
-                                <p class="m-4" style="line-height:1.5;">"قياس مصر" يفخر بالشراكات التي أقامها مع مؤسسات تعليمية وشركات رائدة في مجالات متعددة. هذه الشراكات تساهم في تعزيز جودة ونطاق خدماتنا. نعمل مع شركائنا على تبادل الخبرات والموارد، مما يساعدنا في تقديم برامج تقييم وتدريب تلبي أعلى المعايير الدولية وتتوافق مع احتياجات السوق المحلية والإقليمية.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- من نحن -->
-            <div class="mt-5" style="background-color: #eee;">
-                <div class="container-xxl py-2">
-                    <div class="container">
-                        <div class="row g-5">
-                            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
-                                <div class="position-relative h-100">
-                                    <img class="img-fluid position-absolute w-100 h-100" style="border-radius: 7px;"
-                                        src="{{ asset('Front') }}/img/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg"
-                                        alt="" style="object-fit: cover;">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 wow fadeInUp cl-padding" data-wow-delay="0.3s" style="direction:ltr;">
-                                <h4> {!! $testimonial->data->where('lang_id', $lang_id)->first() != null
-                                    ? $testimonial->data->where('lang_id', $lang_id)->first()->title
-                                    : $testimonial->data->first()->title !!} </h4>
-                                <p class="mb-1" style="line-height: 2; color:black;">
-                                    {!! $testimonial->data->where('lang_id', $lang_id)->first() != null
-                                        ? $testimonial->data->where('lang_id', $lang_id)->first()->description
-                                        : $testimonial->data->first()->description !!}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-xxl py-2">
-                    <div class="container">
-                        <div class="row g-5">
-
-                            <div class="col-lg-6 wow fadeInUp cl-padding" data-wow-delay="0.3s" style="direction:ltr;">
-                                <h4> {!! $testimonial->data->where('lang_id', $lang_id)->first() != null
-                                    ? $testimonial->data->where('lang_id', $lang_id)->first()->new_title
-                                    : $testimonial->data->first()->new_title !!} </h4>
-                                <p class="mb-1" style="line-height: 2; color:black;">
-                                    {!! $testimonial->data->where('lang_id', $lang_id)->first() != null
-                                        ? $testimonial->data->where('lang_id', $lang_id)->first()->new_description
-                                        : $testimonial->data->first()->new_description !!}
-                                </p>
-                            </div>
-                            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
-                                <div class="position-relative h-100">
-                                    <img class="img-fluid position-absolute w-100 h-100" style="border-radius: 7px;"
-                                        src="{{ asset('Front') }}/img/bruce-mars-GzumspFznSE-unsplash.jpg" alt=""
-                                        style="object-fit: cover;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- الدورات التدريبيه -->
-                <div class="Services" style="color:#fff;margin-top: 20px;">
-                    <div class="blog"
-                        style="background-image: url({{ asset('Front') }}/img/ser.jpg);background-repeat: no-repeat;background-size: cover;">
-                        <div class="overlay" style="background-color: rgba(0, 0, 0, 0.7);">
-                            <div class="container">
-                                <div class="section">
-                                    <div class="row">
-                                        <div class="col-md-6 mt-5 mb-5">
-                                            <div class="con3">
-                                                <h4 class="text-white"> {{ __('dashboard.training_courses') }} </h4>
-                                                <p style="line-height: 2;" class="col-md-10">
-                                                    {!! $vision->data->where('lang_id', $lang_id)->first() != null
-                                                        ? $vision->data->where('lang_id', $lang_id)->first()->training_courses
-                                                        : $vision->data->first()->training_courses !!}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mt-5 mb-5">
-                                            <div class="con4">
-                                                <h4 class="text-white"> {{ __('dashboard.quality_policy') }}</h4>
-                                                <p style="line-height: 2;" class="col-md-10">
-                                                    {!! $vision->data->where('lang_id', $lang_id)->first() != null
-                                                        ? $vision->data->where('lang_id', $lang_id)->first()->quality_policy
-                                                        : $vision->data->first()->quality_policy !!}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mt-5 mb-3">
-                                            <div class="con4">
-                                                <h4 class="text-white"> {{ __('dashboard.social_responsibility') }}</h4>
-                                                <p style="line-height: 2;" class="col-md-10">
-                                                    {!! $vision->data->where('lang_id', $lang_id)->first() != null
-                                                        ? $vision->data->where('lang_id', $lang_id)->first()->social_responsibility
-                                                        : $vision->data->first()->social_responsibility !!}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mt-5 mb-3">
-                                            <div class="con4">
-                                                <h4 class="text-white"> {{ __('dashboard.communication') }}</h4>
-                                                <p style="line-height: 2;" class="col-md-10">
-                                                    {!! $vision->data->where('lang_id', $lang_id)->first() != null
-                                                        ? $vision->data->where('lang_id', $lang_id)->first()->communication
-                                                        : $vision->data->first()->communication !!}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- المنصات الالكترونيه -->
-    <div class="container-xxl py-2">
-        <div class="container">
-            <div class="row g-4" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-                @foreach ($informations as $information)
-                @php
-                    $localizedData = $information->data->where('lang_id', $lang_id)->first();
-                @endphp
-                 @if ($localizedData != null && $localizedData->lang_id == $lang_id)
-                    <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class=" text-center pt-3">
-                            <div class="p-4">
-                                <img class="text-primary mb-2" src="{{ asset('Front') }}/img/المنصات-الالكترونية.png"
-                                    style="height: auto ;width: 90px;border-radius: 15px 15px 0 0;" >
-                                <h5 class="mb-2">
-                                    {{ $localizedData->title }}
-                                </h5>
-                                <p>
-                                    {!! $localizedData->description !!}
-                            </div>
-                        </div>
-
-                    </div>
-                    @endif
                 @endforeach
-               
-
             </div>
         </div>
-    </div>
-    <!-- المنصات الاكترونيه static -->
-    <div class="container-xxl py-2">
-    <div class="container">
-      <div class="row g-4" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-        <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-          <div class=" text-center pt-3">
-            <div class="p-4">
-              <img class="text-primary mb-2" src="{{ asset('Front') }}/img/المنصات-الالكترونية.png" style="height: auto ;width: 90px;border-radius: 15px 15px 0 0;">
-              <h5 class="mb-2">  المنصات الإلكترونية   </h5>
-              <p>نوفر في "قياس مصر" منصات إلكترونية متطورة تسهل الوصول إلى الاختبارات والتقييمات. هذه المنصات مصممة لتكون سهلة الاستخدام وتوفر مواد تعليمية وتدريبية ذات جودة عالية. نحرص على أن تكون هذه المنصات متاحة وملائمة لمختلف الفئات، مع توفير الدعم الفني اللازم لضمان تجربة مستخدم فعالة ومفيدة.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-          <div class=" text-center pt-3">
-            <div class="p-4">
-              <img class="text-primary mb-2" src="{{ asset('Front') }}/img/البحث-والتطوير.png" style="height: auto ;width: 90px;border-radius: 15px 15px 0 0;">
-              <h5 class="mb-2">  البحث والتطوير</h5>
-              <p>في "قياس مصر"، نولي اهتمامًا كبيرًا للبحث والتطوير. نعمل بشكل مستمر على إجراء الأبحاث لتحسين وتطوير أساليب التقييم والتدريب. يشمل ذلك استكشاف أحدث الاتجاهات في التعليم والتدريب المهني، وتطبيق نتائج هذه الأبحاث في تطوير الاختبارات والبرامج التدريبية لضمان أنها تواكب الحاجات المتغيرة للسوق وتفي بمتطلبات المهن المستقبلية.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-          <div class=" text-center pt-3">
-            <div class="p-4">
-              <img class="text-primary mb-2" src="{{ asset('Front') }}/img/التوجه-العالمي.png" style="height: auto ;width: 90px;border-radius: 15px 15px 0 0;">
-              <h5 class="mb-2">التوجه العالمي</h5>
-            <p>"قياس مصر" لا يقتصر على السوق المحلية فحسب، بل يسعى أيضًا لترسيخ وجوده على الساحة العالمية. نعمل على إقامة شراكات مع مؤسسات تعليمية ومهنية عالمية، ونشارك في مؤتمرات وفعاليات دولية لتبادل الخبرات وتطوير خدماتنا. هذا التوجه العالمي يعزز من مكانة المركز كمؤسسة رائدة في مجال تقييم الكفاءات وتطوير المهارات.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-          <div class=" text-center pt-3">
-            <div class="p-4">
-              <img class="text-primary mb-2" src="{{ asset('Front') }}/img/الشهادات-المهنية.png" style="height: auto ;width: 90px;border-radius: 15px 15px 0 0;">
-              <h5 class="mb-2">برامج الشهادات المهنية </h5>
-              <p>إلى جانب الاختبارات والدورات التدريبية، يقدم "قياس مصر" مجموعة من برامج الشهادات المهنية في مجالات متنوعة. هذه البرامج مصممة لتزويد الأفراد بالمهارات والمعرفة اللازمة للتميز في مجالاتهم المهنية. تغطي البرامج موضوعات متنوعة تتراوح من الإدارة والقيادة إلى التقنيات الحديثة والابتكار.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-          <div class=" text-center pt-3">
-            <div class="p-4">
-              <img class="text-primary mb-2" src="{{ asset('Front') }}/img/دعم-المجتمع-والتطوع.png" style="height: auto ;width: 90px;border-radius: 15px 15px 0 0;">
-              <h5 class="mb-2">الدعم المجتمعي والتطوع</h5>
-              <p>نؤمن في "قياس مصر" بأهمية الدور الاجتماعي والمساهمة المجتمعية. نقدم الدعم للمبادرات المحلية والمجتمعية من خلال برامج التطوع والمشاركة المجتمعية. يشارك موظفونا والمتخصصون في مركزنا في فعاليات تطوعية ومبادرات تعليمية، مما يعكس التزامنا بالمسؤولية الاجتماعية ودعم التنمية المستدامة.</p>
-            </div>
-          </div>
-        </div>
-      
-      </div>
-    </div>
-  </div>
-
-    <!-- Contact Start -->
-    <div class="container-xxl py-2">
+    </section>
+    <!-- Portfolio Grid-->
+    <section class="page-section bg-light" id="portfolio">
         <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h5>{{ __('dashboard.contact_us') }}</h5>
-                    <p class="mb-4">
-                        {!! $setting->data->where('lang_id', $lang_id)->first() != null
-                            ? $setting->data->where('lang_id', $lang_id)->first()->description
-                            : $setting->data->first()->description !!}
-                    </p>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                            style="width: 50px; height: 50px;">
-                            <i class="fa fa-map-marker-alt text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">{{ __('dashboard.address') }}</h5>
-                            <p class="mb-0">{!! $setting->data->where('lang_id', $lang_id)->first() != null
-                                ? $setting->data->where('lang_id', $lang_id)->first()->address
-                                : $setting->data->first()->address !!}</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                            style="width: 50px; height: 50px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">{{ __('dashboard.phone') }}</h5>
-                            <p class="mb-0">{{ $setting->phone }}</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                            style="width: 50px; height: 50px;">
-                            <i class="fa fa-envelope-open text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">{{ __('dashboard.email') }}</h5>
-                            <p class="mb-0">{{ $setting->email }}</p>
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">{{ __('front.portfolio') }}</h2>
+                <h3 class="section-subheading text-muted">{{ __('front.portfolio_description') }}</h3>
+            </div>
+            <div class="row">
+                @foreach($our_business as $business)
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Portfolio item 1-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            @foreach ($business->media as $media)
+                                <img class="img-fluid" src="{{ asset('storage/' . $media->path) }}" alt="{{ $media->name }}" />
+                            @endforeach
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">
+                                {{ $business->data->where('lang_id', $lang_id)->first() != null?
+                                $business->data->where('lang_id', $lang_id)->first()->title :
+                                $business->data->first()->title }}
+                            </div>
+                            <div class="portfolio-caption-subheading text-muted">
+                                {{ $business->data->where('lang_id', $lang_id)->first() != null?
+                                $business->data->where('lang_id', $lang_id)->first()->description :
+                                $business->data->first()->description }}
+                                </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name"
-                                        placeholder="Enter Your Name" style="border-radius: 7px;">
-                                    <label for="name">Enter Your Name</label>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="phone"
-                                        placeholder="Enter Your Phone" style="border-radius: 7px;">
-                                    <label for="subject">Enter Your Phone</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message"
-                                        style="height: 150px;border-radius: 7px;"></textarea>
-                                    <label for="message">Enter Your Message</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary w-100 py-3" type="submit"
-                                    style="border-radius: 7px;">Send Message</button>
-                            </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- About-->
+    <section class="page-section" id="about">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">{{ __('front.about') }}</h2>
+                <h3 class="section-subheading text-muted">{{ __('front.about_description') }}</h3>
+            </div>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{ asset('Front') }}/assets/img/about/1.jpg" alt="..." /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="subheading">
+                                {{ $about->data->where('lang_id', $lang_id)->first() != null?
+                                    $about->data->where('lang_id', $lang_id)->first()->title :
+                                    $about->data->first()->title }}
+                            </h4>
                         </div>
-                    </form>
+                        <div class="timeline-body"><p class="text-muted">
+                            {!! $about->data->where('lang_id', $lang_id)->first() != null?
+                                $about->data->where('lang_id', $lang_id)->first()->description :
+                                $about->data->first()->description !!}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{ asset('Front') }}/assets/img/about/2.jpg" alt="..." /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="subheading">{{ __('front.history_and_establishment') }}</h4>
+                        </div>
+                        <div class="timeline-body"><p class="text-muted">
+                            {!! $about->data->where('lang_id', $lang_id)->first() != null?
+                                $about->data->where('lang_id', $lang_id)->first()->history :
+                                $about->data->first()->history !!}
+                            </p></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{ asset('Front') }}/assets/img/about/3.jpg" alt="..." /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="subheading">{{ __('front.objectives') }}</h4>
+                        </div>
+                        <div class="timeline-body"><p class="text-muted">
+                            {!! $about->data->where('lang_id', $lang_id)->first() != null?
+                                $about->data->where('lang_id', $lang_id)->first()->objectives :
+                                $about->data->first()->objectives !!}
+                            </p></div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image">
+                        <h4>
+                            Be Part
+                            <br />
+                            Of Our
+                            <br />
+                            Story!
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- Team-->
+    <section class="page-section bg-light" id="team">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">{{ __('front.our_amaizing_team') }}</h2>
+                <h3 class="section-subheading text-muted">{{ __('front.our_amaizing_team_description') }}</h3>
+            </div>
+            <div class="row">
+                @foreach($teams as $team)
+                    <div class="col-lg-3">
+                        <div class="team-member">
+                            @foreach($team->media as $media)
+                                <img class="mx-auto rounded-circle" src="{{ asset('storage/' . $media->path) }}" alt="{{ $media->name }}" />
+                            @endforeach
+                            <h4>{{ $team->name }}</h4>
+                            <p class="text-muted">{{ $team->position }} </p>
+                            <a class="btn btn-dark btn-social mx-2" href="{{ $team->twitter }}" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="{{ $team->facebook }}" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="{{ $team->linkedin }}" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+            </div>
+        </div>
+    </section>
+    <!-- Clients-->
+    <div class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3 col-sm-6 my-3">
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{ asset('Front') }}/assets/img/logos/microsoft.svg" alt="..." aria-label="Microsoft Logo" /></a>
+                </div>
+                <div class="col-md-3 col-sm-6 my-3">
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{ asset('Front') }}/assets/img/logos/google.svg" alt="..." aria-label="Google Logo" /></a>
+                </div>
+                <div class="col-md-3 col-sm-6 my-3">
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{ asset('Front') }}/assets/img/logos/facebook.svg" alt="..." aria-label="Facebook Logo" /></a>
+                </div>
+                <div class="col-md-3 col-sm-6 my-3">
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{ asset('Front') }}/assets/img/logos/ibm.svg" alt="..." aria-label="IBM Logo" /></a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
-
-    <!-- Footer Start -->
-    @include('layouts.Frontend._footer')
-    <!-- Footer End -->
+    <!-- Contact-->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">{{ __('front.contact_us') }}</h2>
+                <h3 class="section-subheading text-muted">{{ __('front.contact_us_description') }}</h3>
+            </div>
+            <!-- * * * * * * * * * * * * * * *-->
+            <!-- * * SB Forms Contact Form * *-->
+            <!-- * * * * * * * * * * * * * * *-->
+            <!-- This form is pre-integrated with SB Forms.-->
+            <!-- To make this form functional, sign up at-->
+            <!-- https://startbootstrap.com/solution/contact-forms-->
+            <!-- to get an API token!-->
+            <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="{{ route('contact.store') }}" method="POST">
+                @csrf
+                <div class="row align-items-stretch mb-5">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <!-- Name input-->
+                            <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('front.your_name') }} *"data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">{{ __('front.a_name_is_required') }}.</div>
+                        </div>
+                        <div class="form-group">
+                            <!-- Email address input-->
+                            <input class="form-control" id="email" name="email" type="email" placeholder="{{ __('front.your_email') }} *" data-sb-validations="required,email" />
+                            <div class="invalid-feedback" data-sb-feedback="email:required">{{ __('front.a_valid_email_is_required') }}.</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">{{ __('front.a_valid_email_is_required') }}.</div>
+                        </div>
+                        <div class="form-group mb-md-0">
+                            <!-- Phone number input-->
+                            <input class="form-control" id="phone" name="phone" type="tel" placeholder="{{ __('front.your_phone') }} *" data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">{{ __('front.a_phone_number_is_required') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-textarea mb-md-0">
+                            <!-- Message input-->
+                            <textarea class="form-control" id="message" name="message" placeholder="{{ __('front.your_message') }} *" data-sb-validations="required"></textarea>
+                            <div class="invalid-feedback" data-sb-feedback="message:required">{{ __('front.a_message_is_required') }}</div>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+                <!-- This is what your users will see when there is-->
+                <!-- an error submitting the form-->
+                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">{{ __('front.error_send_message') }}!</div></div>
+                <!-- Submit Button-->
+                <div class="text-center">
+                    <button class="btn btn-primary btn-xl text-uppercase" type="submit">{{ __('front.send_message') }}</button>
+                </div>
+            </form>
+        </div>
+    </section>
 @endsection

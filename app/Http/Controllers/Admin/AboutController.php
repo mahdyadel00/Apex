@@ -25,7 +25,6 @@ class AboutController extends Controller
 
     public function update(UpdateRequestAbout $request)
     {
-            //    dd($request->all());
         try {
             DB::beginTransaction();
             $about = About::first();
@@ -36,13 +35,13 @@ class AboutController extends Controller
                 ])->only('status', 'image'));
 
 
-                $about->data()->updateOrCreate(
-                    ['lang_id' => $request->lang_id ?? Lang::getSelectedLangId()],
+                $about->data()->update(
+                    ['lang_id'          => $request->lang_id ?? Lang::getSelectedLangId()],
                     [
-                        'title' => $request->title,
-                        'description' => $request->description,
-                        'history' => $request->history,
-                        'objectives' => $request->objectives,
+                        'title'         => $request->title,
+                        'description'   => $request->description,
+                        'history'       => $request->history,
+                        'objectives'    => $request->objectives,
                     ]
                 );
 

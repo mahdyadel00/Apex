@@ -5,10 +5,13 @@
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">
-                {{__('dashboard.qaysegp')}}  <small>{{ __('dashboard.all_services') }}</small>
+                {{__('dashboard.apex')}}  <small>{{ __('dashboard.all_services') }}</small>
             </h3>
         </div>
         <div style="margin: 10px 10px 0 0;">
+            @can('create_service')
+                <a class="btn btn-primary m-2" href="{{ route('admin.services.create') }}">{{ __('dashboard.add_service') }}</a>
+            @endcan
             @include('layouts.admin._message')
         </div>
         <div class="block-content block-content-full">
@@ -19,8 +22,9 @@
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 80px;">#</th>
-                        <th class="text-center">{{ __('dashboard.company_name') }}</th>
-                        <th class="text-center">{{ __('dashboard.useful') }}</th>
+                        <th class="text-center">{{ __('dashboard.service_image') }}</th>
+                        <th class="text-center">{{ __('dashboard.title') }}</th>
+                        <th class="text-center">{{ __('dashboard.description') }}</th>
                         <th class="text-center">{{ __('dashboard.created_at') }}</th>
                         <th class="text-center">{{ __('dashboard.action') }}</th>
                     </tr>
@@ -28,29 +32,26 @@
                 <tbody>
                     @foreach ($services as $service)
                         <tr>
-                            <td class="text-center">{{ $service->id }}</td>
+                            <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">
-                                {{ $service->company->data->where('lang_id', $lang_id)->first() != null?
-                               $service->company->data->where('lang_id', $lang_id)->first()->name :
-                               $service->company->data->first()->name }}
+                                @foreach ($service->media as $media)
+                                    <img src="{{ asset('storage/' . $media->path) }}" alt="{{ $media->name }}"
+                                        class="img-thumbnail" style="width: 100px; height: 100px;">
+                                @endforeach
                             </td>
                             <td class="text-center">
-                                @if ($service->useful == 1)
-                                    <span class="badge bg-success">{{ __('dashboard.useful') }}</span>
-                                @else
-                                    <span class="badge bg-danger">{{ __('dashboard.not_useful') }}</span>
-                                @endif
+                                {{ $service->data->where('lang_id', $lang_id)->first() != null?
+                               $service->data->where('lang_id', $lang_id)->first()->title :
+                               $service->data->first()->title }}
                             </td>
+                            <td class="text-center">
+                                {{ $service->data->where('lang_id', $lang_id)->first() != null?
+                               $service->data->where('lang_id', $lang_id)->first()->description :
+                               $service->data->first()->description }}
+                            </td>
+
                             <td class="text-center">{{ date('Y-m-d', strtotime($service->created_at)) }}</td>
                             <td class="text-center">
-                                @can('show_service')
-                                    <button class="btn btn-success">
-                                        <a href="{{ route('admin.services.show', [$service->id]) }}"
-                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                            data-original-title="Show service">
-                                            <i class="fa fa-eye"></i>
-                                        </a></button>
-                                @endcan
                                 @can('edit_service')
                                     <button class="btn btn-info">
                                         <a href="{{ route('admin.services.edit', [$service->id]) }}"

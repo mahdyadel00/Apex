@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             StateSeeder::class,
             StateDataSeeder::class,
-            SectorSeeder::class,
-            SectorDataSeeder::class,
             UserSeeder::class,
             SettingSeeder::class,
             SliderSeeder::class,
@@ -32,12 +30,9 @@ class DatabaseSeeder extends Seeder
             AboutSeeder::class,
             ContactSeeder::class,
             ContactSeeder::class,
-            VisionSeeder::class,
-            TestimonialSeeder::class,
             CitySeeder::class,
-            CompanySeeder::class,
-            CompanyDataSeeder::class,
             ServiceSeeder::class,
+            OurBusinessSeeder::class,
         ]);
     }
 }

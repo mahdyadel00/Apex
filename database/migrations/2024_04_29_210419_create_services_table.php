@@ -16,11 +16,6 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignIdFor(Company::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->text('information');
-            $table->string('information_price')->nullable();
-            $table->boolean('useful')->default(false)->nullable();
             $table->timestamps();
         });
     }

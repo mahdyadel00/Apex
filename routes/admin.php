@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\OurBusinessController;
+use App\Http\Controllers\Admin\TeamController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -62,44 +64,10 @@ Route::group(
                 Route::get('/profile', [AuthController::class, 'profile'])->name('profile.edit');
                 Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
                 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-                // Route Students
-                Route::resource('/students', StudentController::class);
-                //student upload file
-                Route::get('/students/upload-file/{id}', [StudentController::class, 'uploadFile'])->name('students.upload');
-                Route::put('/students/upload-file/{id}', [StudentController::class, 'storeFile'])->name('students.store_file');
-                //Route Quiz
-                Route::group(['middleware' => ['can:quizzes']], function () {
-                    Route::resource('/quizzes', QuizController::class);
-                });
-                //Route Appointments
-                Route::group(['middleware' => ['can:appointments']], function () {
-                    Route::resource('/appointments', AppointmentController::class);
-                });
-
-                //category
-                Route::group(['middleware' => ['can:categories']], function () {
-                    Route::resource('/categories', CategoryController::class);
-                });
-
-                //post
+                //posts
                 // Route::group(['middleware' => ['can:posts']], function () {
                     Route::resource('/posts', PostController::class);
                 // });
-
-                //Route certificate_integrity
-                Route::group(['middleware' => ['can:certificate_integrity']], function () {
-                   Route::resource('/certificate_integrity', CertificateIntegrityController::class);
-                });
-
-                //Route step_systems
-                Route::group(['middleware' => ['can:step_systems']], function () {
-                    Route::resource('/step_systems', StepSystemController::class);
-                });
-
-                //Route StudentSystem
-                Route::group(['middleware' => ['can:student_systems']], function () {
-                    Route::resource('/student_systems', StudentSystemController::class);
-                });
 
                 //Route User
                 Route::group(['middleware' => ['can:users']], function () {
@@ -132,15 +100,6 @@ Route::group(
                     Route::resource('/states', StateController::class);
                 });
 
-                //Route Sectors
-                Route::group(['middleware' => ['can:sectors']], function () {
-                    Route::resource('/sectors', SectorController::class);
-                });
-                //Route Center
-                Route::group(['middleware' => ['can:centers']], function () {
-                    Route::resource('/centers', CenterController::class);
-                });
-
                 //Route abouts
                 Route::group(['middleware' => ['can:abouts']], function () {
                     Route::get('/abouts', [AboutController::class, 'edit'])->name('abouts.edit');
@@ -162,43 +121,19 @@ Route::group(
                     Route::resource('/sliders', SliderController::class);
                 });
 
-                //Route valuesServices
-                Route::group(['middleware' => ['can:sliders']], function () {
-                    Route::resource('/value-services', ValuesServicesController::class);
-                });
-
-                //Route companies
-                Route::group(['middleware' => ['can:companies']], function () {
-                    Route::resource('/companies', CompanyController::class);
-                    Route::get('/companies/change-password/{id}', [CompanyController::class, 'changePassword'])->name('companies.change_password');
-                    Route::put('/companies/update-password/{id}', [CompanyController::class, 'updatePassword'])->name('companies.update_password');
-                });
-
                 //Route Services
                 Route::group(['middleware' => ['can:services']], function () {
                     Route::resource('/services', ServiceController::class);
                 });
-                //Route vision
-                // Route::group(['middleware' => ['can:visions']], function () {
-                    Route::get('/visions', [VisionController::class, 'edit'])->name('visions.edit');
-                    Route::put('/visions', [VisionController::class, 'update'])->name('visions.update');
-                // });
-
-                //Route testimonials
-                Route::group(['middleware' => ['can:testimonials']], function () {
-                    Route::get('/testimonials', [TestimonialController::class, 'edit'])->name('testimonials.edit');
-                    Route::put('/testimonials/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
+                //route our business
+                Route::group(['middleware' => ['can:our_businesses']], function () {
+                    Route::resource('/our_businesses', OurBusinessController::class);
+                });
+                //route team
+                Route::group(['middleware' => ['can:teams']], function () {
+                    Route::resource('/teams', TeamController::class);
                 });
 
-                //Route informations
-                Route::group(['middleware' => ['can:informations']], function () {
-                    Route::resource('/informations', InformationController::class);
-                });
-
-                //Route qgos
-                Route::group(['middleware' => ['can:qgos']], function () {
-                    Route::resource('/qgos', QgoController::class);
-                });
             });
         });
     }

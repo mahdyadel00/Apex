@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Bll\Lang;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Service\StoreServiceRequest;
 use App\Http\Requests\Admin\Service\UpdateServiceRequest;
 use App\Models\City;
 use App\Models\Company;
@@ -31,15 +32,37 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.services.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreServiceRequest $request)
     {
-        //
+        try{
+            DB::beginTransaction();
+
+            $service = Service::create($request->safe()->all());
+
+            $service->data()->create($request->safe()->merge([
+                'lang_id' => Lang::getSelectedLangId()
+            ])->all());
+
+
+            if (count($request->files) > 0) {
+              saveMedia($request , $service);
+            }
+
+            DB::commit();
+            session()->flash('success', __('messages.success_created_service'));
+            return redirect()->route('admin.services.index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::channel('stderr')->error($e->getMessage());
+            session()->flash('error', __('messages.error'));
+            return redirect()->route('admin.services.index');
+        }
     }
 
     /**
@@ -76,10 +99,9 @@ class ServiceController extends Controller
         try{
             DB::beginTransaction();
 
-            $service = Service::find($id);
-            $lang_id = Lang::getSelectedLangId();
-            $cities = City::get();
-            $companies = Company::get();
+            $service    = Service::find($id);
+            $lang_id    = Lang::getSelectedLangId();
+            $languages  = Language::get();
 
             if(!$service) {
                 session()->flash('error', __('messages.service_not_found'));
@@ -87,7 +109,7 @@ class ServiceController extends Controller
             }
 
             DB::commit();
-            return view('admin.services.edit', compact('service', 'lang_id', 'cities', 'companies'));
+            return view('admin.services.edit', compact('service', 'lang_id', 'languages'));
         } catch (\Exception $e) {
             DB::rollBack();
             Log::channel('stderr')->error($e->getMessage());
@@ -112,6 +134,13 @@ class ServiceController extends Controller
             }
 
             $service->update($request->safe()->all());
+            $service->data()->update($request->safe()->merge([
+                'lang_id' => $request->lang_id ?? Lang::getSelectedLangId()
+            ])->all());
+
+            if (count($request->files) > 0) {
+                saveMedia($request , $service);
+            }
 
             DB::commit();
             session()->flash('success', __('messages.success_updated_service'));
@@ -142,7 +171,7 @@ class ServiceController extends Controller
             $service->delete();
 
             DB::commit();
-            session()->flash('success', __('messages.service_deleted'));
+            session()->flash('success', __('messages.service_deleted_successfully'));
             return redirect()->route('admin.services.index');
         } catch (\Exception $e) {
             DB::rollBack();

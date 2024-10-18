@@ -13,6 +13,18 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        Service::factory()->count(10)->create();
+        $service = Service::create();
+
+        $service->data()->create([
+            'title'         => 'Service 1',
+            'lang_id'       => 1,
+            'description'   => 'Description for service 1'
+        ]);
+
+        $service->data()->create([
+            'title'         => 'Service 2',
+            'lang_id'       => 2,
+            'description'   => 'Description for service 2'
+        ]);
     }
 }

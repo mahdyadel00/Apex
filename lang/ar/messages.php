@@ -189,15 +189,22 @@ return [
     'company_not_found'                                 => 'هذه الشركة غير موجودة',
     'company_data_created_successfully'                 => 'تم اضافة بيانات الشركة بنجاح',
     'company_data_updated_successfully'                 => 'تم تعديل بيانات الشركة بنجاح',
+    'service_deleted_successfully'                      => 'تم حذف الخدمة بنجاح',
     'company_password_changed_successfully'             => 'تم تغيير كلمة مرور الشركة بنجاح',
     'company_password_updated_successfully'             => 'تم تعديل كلمة مرور الشركة بنجاح',
-    'success_created_service'                           => 'تم الإضافة بنجاح بانتظار الموافقة علي عملية البيع وسيتم التحويل علي المحفظة',
+    'success_created_service'                           => 'تم اضافة الخدمة بنجاح',
     'success_updated_service'                           => 'تم تعديل الخدمة بنجاح',
     'success_deleted_service'                           => 'تم حذف الخدمة بنجاح',
     'success_created_value_service'                     => 'تم اضافة قيمة الخدمة بنجاح',
     'success_updated_value_service'                     => 'تم تعديل قيمة الخدمة بنجاح',
     'success_deleted_value_service'                     => 'تم حذف قيمة الخدمة بنجاح',
     'success_created_slider'                            => 'تم اضافة السلايدر بنجاح',
+    'success_deleted_our_business'                      => 'تم حذف عملنا بنجاح',
+    'success_updated_our_business'                      => 'تم تعديل عملنا بنجاح',
+    'error_our_business_not_found'                      => 'عملنا غير موجود',
+    'success_created_our_business'                      => 'تم اضافة عملنا بنجاح',
+    'success_deleted_slider'                            => 'تم حذف السلايدر بنجاح',
+
 
 
 

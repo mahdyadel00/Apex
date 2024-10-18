@@ -18,9 +18,8 @@ class ContactSeeder extends Seeder
 
         Contact::factory()->count(1)->create([
             'name'      => 'Contact',
-            'email'     =>  'info@email.com',
+            'email'     =>  'info@apex.com',
             'phone'     =>  '123456789',
-            'subject'   =>  'Contact Subject',
             'message'   =>  'Contact Message',
         ]);
     }

@@ -51,136 +51,26 @@
                     </a>
                 </li>
 
-                @can('students')
-                <li class="nav-main-heading">{{ __('dashboard.students') }}</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.students.index') }}">
-                            <i class="nav-main-link-icon fa fa-user"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.students') }}</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('quizzes')
-                <li class="nav-main-heading">{{ __('dashboard.quizzes') }}</li>
-
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.quizzes.index') }}">
-                            <i class="nav-main-link-icon fa fa-calendar"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.quizzes') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('appointments')
-                <li class="nav-main-heading">{{ __('dashboard.appointments') }}</li>
-
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.appointments.index') }}">
-                            <i class="nav-main-link-icon fa fa-calendar"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.appointments') }}</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('appointments')
-                <li class="nav-main-heading">{{ __('dashboard.blog') }}</li>
-
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.categories.index') }}">
-                            <i class="nav-main-link-icon fa fa-calendar"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.categories') }}</span>
-                        </a>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.posts.index') }}">
-                            <i class="nav-main-link-icon fa fa-calendar"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.posts') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('step_systems')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.step_systems.index') }}">
-                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.step_systems') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('certificate_integrity')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.certificate_integrity.index') }}">
-                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.certificate_integrity') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('student_systems')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.student_systems.index') }}">
-                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.student_systems') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('qgos')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.qgos.index') }}">
-                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.qgo') }}</span>
-                        </a>
-                    </li>
-                @endcan
-
                 <li class="nav-main-heading">{{ __('dashboard.Site settings') }}</li>
 
-                @can('countries')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.countries.index') }}">
-                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.countries') }}</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('states')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.states.index') }}">
-                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.states') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('sectors')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.sectors.index') }}">
-                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.sectors') }}</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('centers')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.centers.index') }}">
-                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.centers') }}</span>
-                        </a>
-                    </li>
-                @endcan
-
-                <li class="nav-main-heading">{{ __('dashboard.technical support') }}</li>
-
-                @can('contacts')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.contacts.index') }}">
-                            <i class="nav-main-link-icon fa fa-circle-info"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.contacts') }}</span>
-                        </a>
-                    </li>
-                @endcan
-
+<!--                @can('countries')-->
+<!--                    <li class="nav-main-item">-->
+<!--                        <a class="nav-main-link" href="{{ route('admin.countries.index') }}">-->
+<!--                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>-->
+<!--                            <span class="nav-main-link-name">{{ __('dashboard.countries') }}</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                @endcan-->
+<!---->
+<!--                @can('states')-->
+<!--                    <li class="nav-main-item">-->
+<!--                        <a class="nav-main-link" href="{{ route('admin.states.index') }}">-->
+<!--                            <i class="nav-main-link-icon fa fa-map-marker-alt"></i>-->
+<!--                            <span class="nav-main-link-name">{{ __('dashboard.states') }}</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                @endcan-->
                 @can('users')
-                    <li class="nav-main-heading">{{ __('dashboard.Application settings') }}</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link" href="{{ route('admin.users.index') }}">
                             <i class="nav-main-link-icon fa fa-users"></i>
@@ -189,35 +79,53 @@
                     </li>
                 @endcan
 
-                @can('companies')
-                    <li class="nav-main-heading">{{ __('dashboard.Application settings') }}</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.companies.index') }}">
-                            <i class="nav-main-link-icon fa fa-companies"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.companies') }}</span>
-                        </a>
-                    </li>
-                @endcan
 
+<!--                @can('roles')-->
+<!--                    <li class="nav-main-item">-->
+<!--                        <a class="nav-main-link" href="{{ route('admin.roles.index') }}">-->
+<!--                            <i class="nav-main-link-icon fa fa-indent"></i>-->
+<!--                            <span class="nav-main-link-name">{{ __('dashboard.roles') }}</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                @endcan-->
                 @can('services')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.services.index') }}">
-                            <i class="nav-main-link-icon fa fa-companies"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.services') }}</span>
-                        </a>
-                    </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('admin.services.index') }}">
+                        <i class="nav-main-link-icon fa fa-cogs"></i>
+                        <span class="nav-main-link-name">{{ __('dashboard.services') }}</span>
+                    </a>
+                </li>
                 @endcan
 
-                @can('roles')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.roles.index') }}">
-                            <i class="nav-main-link-icon fa fa-indent"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.roles') }}</span>
-                        </a>
-                    </li>
+                @can('our_businesses')
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('admin.our_businesses.index') }}">
+                        <i class="nav-main-link-icon fa fa-cogs"></i>
+                        <span class="nav-main-link-name">{{ __('dashboard.our_businesses') }}</span>
+                    </a>
+                </li>
+                @endcan
+                @can('teams')
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('admin.teams.index') }}">
+                        <i class="nav-main-link-icon fa fa-users"></i>
+                        <span class="nav-main-link-name">{{ __('dashboard.teams') }}</span>
+                    </a>
+                </li>
                 @endcan
 
-                <li class="nav-main-heading">{{ __('dashboard.Application content') }}</li>
+<!--                <li class="nav-main-heading">{{ __('dashboard.technical support') }}</li>-->
+
+                @can('contacts')
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('admin.contacts.index') }}">
+                        <i class="nav-main-link-icon fa fa-circle-info"></i>
+                        <span class="nav-main-link-name">{{ __('dashboard.contacts') }}</span>
+                    </a>
+                </li>
+                @endcan
+
+
                 @can('settings')
                     <li class="nav-main-item">
                         <a class="nav-main-link" href="{{ route('admin.settings.edit') }}">
@@ -235,45 +143,11 @@
                         </a>
                     </li>
                 @endcan
-                @can('testimonials')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.testimonials.edit') }}">
-                            <i class="nav-main-link-icon fa fa-testimonials"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.testimonials') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('informations')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.informations.index') }}">
-                            <i class="nav-main-link-icon fa fa-informations"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.informations') }}</span>
-                        </a>
-                    </li>
-                @endcan
-
-
                 @can('abouts')
                     <li class="nav-main-item">
                         <a class="nav-main-link" href="{{ route('admin.abouts.edit') }}">
                             <i class="nav-main-link-icon fa fa-cog"></i>
                             <span class="nav-main-link-name">{{ __('dashboard.abouts') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('abouts')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.value-services.index') }}">
-                            <i class="nav-main-link-icon fa fa-cog"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.values_services') }}</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('abouts')
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="{{ route('admin.visions.edit') }}">
-                            <i class="nav-main-link-icon fa fa-cog"></i>
-                            <span class="nav-main-link-name">{{ __('dashboard.visions') }}</span>
                         </a>
                     </li>
                 @endcan

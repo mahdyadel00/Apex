@@ -189,12 +189,18 @@ return [
     'certificate_integrity_already_exists'              => "Certificate Integrity Already Exists",
     'company_password_changed_successfully'             => "Company Password Changed Successfully",
     'company_password_updated_successfully'             => "Company Password Updated Successfully",
-    'success_created_service'                           => "The addition was successful. The sale is pending approval and will be transferred to the wallet.",
+    'success_created_service'                           => "Success Created Service",
+    'service_deleted_successfully'                      => "Service Deleted Successfully",
     'success_updated_service'                           => "Success Updated Service",
     'success_deleted_service'                           => "Success Deleted Service",
     'success_restored_service'                          => "Success Restored Service",
     'service_not_found'                                 => "Service Not Found",
     'service_already_exists'                            => "Service Already Exists",
+    'success_deleted_our_business'                      => "Success Deleted Our Business",
+    'success_updated_our_business'                      => "Success Updated Our Business",
+    'our_business_not_found'                            => "Our Business Not Found",
+    'our_business_already_exists'                       => "Our Business Already Exists",
+    'success_created_our_business'                      => "Success Created Our Business",
 
 
 ];

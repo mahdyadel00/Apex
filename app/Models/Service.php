@@ -9,44 +9,17 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'country_id',
-        'state_id',
-        'sector_id',
-        'company_id',
-        'information',
-        'information_price',
-        'useful',
-    ];
+    protected $fillable = ['id'];
 
-    protected  $casts = [
-        'useful' => 'boolean',
-    ];
 
-    public function company()
+    public function data()
     {
-        return $this->belongsTo(Company::class);
+        return $this->hasMany(ServiceData::class);
     }
 
-    public function country()
+    public function media()
     {
-        return $this->belongsTo(Country::class);
-    }
-
-    public function state()
-    {
-        return $this->belongsTo(State::class);
-    }
-
-    public function sector()
-    {
-        return $this->belongsTo(Sector::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->morphMany(Media::class, 'mediable');
     }
 
 }
